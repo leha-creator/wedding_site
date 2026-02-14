@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Приглашение на свадьбу - Павел & Мария</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body class="intro">
+    <!-- Экран-заставка: конверт поверх header -->
+    <div class="envelope-screen" id="envelope-screen" aria-hidden="false">
+        <div class="envelope-paper" aria-hidden="true"></div>
+        <div class="envelope-block">
+            <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Открыть приглашение">
+                <img src="assets/ChatGPT Image 31 янв. 2026 г., 21_53_04.png" alt="Приглашение" class="envelope-img">
+            </div>
+            <p class="envelope-hint">Для просмотра нажмите на конверт</p>
+        </div>
+    </div>
+
+    <audio id="wedding-music" loop preload="auto">
+        <source src="michael_jackson_this_is_it_13 - Billie Jean.mp3" type="audio/mpeg">
+    </audio>
+
+    <button type="button" class="music-toggle" id="music-toggle" aria-label="Включить или выключить музыку" title="Музыка" aria-pressed="true" hidden>
+        <span class="music-toggle-icon music-toggle-on" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path></svg>
+        </span>
+        <span class="music-toggle-icon music-toggle-off" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+        </span>
+    </button>
+
+    <div class="wedding-container">
+        <!-- Header Section -->
+        <div class="header-section">
+            <div class="header-photo-wrapper">
+                <img src="assets/IMG_3830.JPG" alt="Павел и Мария" class="header-photo">
+                <div class="header-content-overlay">
+                    <div class="top-labels">
+                        <span class="label-small label-left">любовь</span>
+                        <div class="labels-right">
+                            <span class="label-small label-button">свадьбе</span>
+                            <span class="label-small">той</span>
+                        </div>
+                    </div>
+                    <div class="couple-names">
+                        <div>ПАВЕЛ &</div>
+                        <div>МАРИЯ</div>
+                    </div>
+                    <div class="wedding-date">24.07.2025</div>
+                    <div class="photo-quote">
+                        Не существует шести или семи чудес в мире. Есть только одно: это любовь.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LOVE Feature -->
+        <div class="love-feature">
+            <div class="love-text">
+                <div>LO</div>
+                <div>VE</div>
+            </div>
+        </div>
+
+        <!-- Guest Invitation Section -->
+        <div class="guest-invitation">
+            <div class="section-text-wrapper">
+                <h2 class="section-title-serif">Дорогие гости!</h2>
+                <p class="section-text">
+                    Этот день настал — мы женимся!<br><br> Приглашаем Вас разделить с нами<br> радость этого особенного
+                    дня.
+                </p>
+            </div>
+
+            <!-- Date Selection -->
+            <div class="date-selection">
+                <div class="calendar-row">
+                    <div class="calendar-day">
+                        <div class="day-name">четверг</div>
+                        <div class="month-label">июль</div>
+                        <div class="day-number">23</div>
+                    </div>
+                    <div class="calendar-day selected">
+                        <div class="day-name">пятница</div>
+                        <div class="month-label">июль</div>
+                        <div class="day-number">24</div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="day-name">суббота</div>
+                        <div class="month-label">июль</div>
+                        <div class="day-number">25</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- One Love Section -->
+        <div class="one-love-section">
+            <div class="one-love-photo-wrapper">
+                <img src="assets/IMG_3757.JPG" alt="Павел и Мария" class="one-love-photo">
+                <div class="one-love-content-overlay">
+                    <div class="one-love-title">
+                        <div class="one-love-title-line">Одна</div>
+                        <div class="one-love-title-line">любовь</div>
+                    </div>
+                    <div class="one-love-subtitle">на всю жизнь...</div>
+                </div>
+            </div>
+        </div>
+        <div class="section-tagline"><span>ЛЮБОВЬ</span> <span>СИЛЬНЕЕ</span> <span>ВСЕГО</span></div>
+
+        <!-- Location Section -->
+        <div class="location-section">
+            <div class="section-label">[МЕСТО]</div>
+            <div class="decorative-title location-title">
+                <span class="title-part">LOCA</span>
+                <span class="title-part-large">TION</span>
+            </div>
+            <div class="location-details">
+                <p>Банкетный Комплекс "Villa Arcobaleno"</p>
+                <p>МО, д. Высоково, ул. Центральная д. 21А</p>
+            </div>
+            <div class="location-photo-wrapper">
+                <img src="assets/location.png" alt="Место проведения" class="section-photo">
+            </div>
+            <button class="btn-primary">открыть карту</button>
+        </div>
+
+        <!-- Dress Code Section -->
+        <div class="dresscode-section">
+            <div class="dresscode-photo-wrapper">
+                <img src="assets/IMG_3832.JPG" alt="Андрей и Анастасия" class="section-photo">
+            </div>
+        </div>
+
+        <!-- Details Section -->
+        <div class="details-section">
+            <div class="decorative-title details-title">
+                <div class="title-letter-large">D</div>
+                <div class="section-label">
+                    <div>[ДЕТАЛИ]</div>
+                    <div class="title-rest">DETAILS</div>
+                </div>
+            </div>
+            <p class="section-text">
+                Мы догадываемся, что после получения приглашения у вас может появиться ряд вопросов.
+            </p>
+            <div class="details-photo-wrapper">
+                <img src="assets/IMG_3831.JPG" alt="Руки" class="section-photo">
+            </div>
+        </div>
+
+        <!-- FAQs Section -->
+        <div class="faqs-section">
+            <div class="faq-item">
+                <div class="faq-number">01</div>
+                <p class="faq-text">
+                    Чтобы наши руки были свободны для объятий, будем рады легким подаркам в конвертах.
+                </p>
+            </div>
+            <div class="faq-item">
+                <div class="faq-number">02</div>
+                <p class="faq-text">
+                    Не переживайте, мы не будем вызывать гостей говорить тосты. Во время нашей свадьбы будет действовать
+                    «открытый микрофон».
+                </p>
+            </div>
+            <div class="faq-item">
+                <div class="faq-number">03</div>
+                <p class="faq-text">
+                    Если Вы хотите преподнести нам цветы, то пусть это будет одна белая роза, так у нас получится один
+                    роскошный букет.
+                </p>
+            </div>
+            <div class="faq-item">
+                <div class="faq-number">04</div>
+                <p class="faq-text">
+                    детей на свадьбе игнорировать
+                </p>
+            </div>
+            <div class="faq-item">
+                <div class="faq-number">05</div>
+                <p class="faq-text">
+                    фото со свадьбы можно найти тут
+                </p>
+            </div>
+        </div>
+
+        <!-- Guest Questionnaire Section -->
+        <div class="questionnaire-section">
+            <h2 class="section-title-serif">АНКЕТА<br> ДЛЯ ГОСТЕЙ</h2>
+            <p class="section-text">
+                А еще мы очень хотим, чтобы у вас остались самые лучшие воспоминания о нашей свадьбе. Поэтому, просим
+                вас заполнить анкету ниже.
+            </p>
+            <p class="questionnaire-deadline">Дедлайн: 15.04.2026</p>
+            <button class="btn-primary" id="open-questionnaire-btn">заполнить анкету</button>
+        </div>
+
+        <!-- Organizer / Performances -->
+        <div class="organizer-section">
+            <h2 class="organizer-title">Хотите выступить на свадьбе?</h2>
+            <p class="organizer-text">
+                Если вы хотите поздравить нас песней, танцем или чем-то особенным — напишите организатору,
+                и мы обязательно найдём для вас место в программе.
+            </p>
+            <p class="organizer-name">Матвей Загвоздкин</p>
+            <p class="organizer-contacts">
+                <a href="tel:+79990000000" class="organizer-link">+7 (999) 000-00-00</a><br>
+                <a href="https://t.me/placeholder" class="organizer-link" target="_blank" rel="noopener">Telegram: @placeholder</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="questionnaire-modal" aria-hidden="true">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title">Анкета для гостей</h2>
+                <button class="modal-close" id="close-modal-btn" aria-label="Закрыть">&times;</button>
+            </div>
+            <p class="modal-deadline">Просим заполнить анкету до <strong>15.04.2026</strong>.</p>
+            <form class="questionnaire-form" id="questionnaire-form">
+                <div class="form-group">
+                    <div class="fio-fields" id="fio-fields">
+                        <div class="fio-row">
+                            <input type="text" name="fio[]" placeholder="Фамилия Имя Отчество" required>
+                            <button type="button" class="btn-add-fio" id="add-fio-btn" aria-label="Добавить ещё гостя" title="Добавить ещё гостя">
+                                <span class="plus-icon">+</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="transport" value="yes">
+                        <span class="checkbox-custom"></span>
+                        <span class="checkbox-label">Нужен транспорт до места празднования</span>
+                    </label>
+                </div>
+                <button type="submit" class="btn-primary btn-submit">отправить</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            var body = document.body;
+            var envelopeScreen = document.getElementById('envelope-screen');
+            var envelope = document.getElementById('envelope');
+            var audio = document.getElementById('wedding-music');
+
+            function openInvitation() {
+                if (body.classList.contains('intro-opened')) return;
+                body.classList.add('intro-opened');
+                envelope.classList.add('envelope-opened');
+                envelopeScreen.setAttribute('aria-hidden', 'true');
+
+                setTimeout(function() {
+                    envelopeScreen.classList.add('envelope-screen-hidden');
+                    body.classList.remove('intro');
+                    var musicToggle = document.getElementById('music-toggle');
+                    if (musicToggle) musicToggle.removeAttribute('hidden');
+                    try { audio.play(); } catch (e) {}
+                }, 900);
+            }
+
+            envelope.addEventListener('click', openInvitation);
+            envelope.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openInvitation(); }
+            });
+
+            var musicToggle = document.getElementById('music-toggle');
+            if (musicToggle) {
+                musicToggle.addEventListener('click', function() {
+                    if (audio.paused) {
+                        audio.play();
+                        musicToggle.setAttribute('aria-pressed', 'true');
+                    } else {
+                        audio.pause();
+                        musicToggle.setAttribute('aria-pressed', 'false');
+                    }
+                });
+            }
+        })();
+    </script>
+    <script>
+        (function() {
+            const modal = document.getElementById('questionnaire-modal');
+            const openBtn = document.getElementById('open-questionnaire-btn');
+            const closeBtn = document.getElementById('close-modal-btn');
+            const addFioBtn = document.getElementById('add-fio-btn');
+            const fioFields = document.getElementById('fio-fields');
+            const form = document.getElementById('questionnaire-form');
+
+            function openModal() {
+                modal.classList.add('modal-visible');
+                modal.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeModal() {
+                modal.classList.remove('modal-visible');
+                modal.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+            }
+
+            openBtn.addEventListener('click', openModal);
+            closeBtn.addEventListener('click', closeModal);
+
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) closeModal();
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.classList.contains('modal-visible')) closeModal();
+            });
+
+            addFioBtn.addEventListener('click', function() {
+                const row = document.createElement('div');
+                row.className = 'fio-row';
+                row.innerHTML = '<input type="text" name="fio[]" placeholder="Фамилия Имя Отчество">' +
+                    '<button type="button" class="btn-remove-fio" aria-label="Удалить">&times;</button>';
+                fioFields.appendChild(row);
+
+                row.querySelector('.btn-remove-fio').addEventListener('click', function() {
+                    row.remove();
+                });
+            });
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const formData = new FormData(form);
+                const guests = formData.getAll('fio[]').filter(v => v.trim());
+                const transport = form.querySelector('[name="transport"]').checked ? 'да' : 'нет';
+                console.log('Guests:', guests, 'Transport:', transport);
+                closeModal();
+                form.reset();
+            });
+        })();
+    </script>
+</body>
+
+</html>
