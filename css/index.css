@@ -4,6 +4,13 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300..700;1,300..700&family=Jersey+25&display=swap');
 
+@font-face {
+    font-family: 'Foglihten';
+    src: url('../assets/FoglihtenNo06_076.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 
 * {
     margin: 0;
@@ -13,7 +20,8 @@
 
 body {
     width: 100%;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Foglihten', sans-serif;
+    letter-spacing: 2px;
     background-color: #FAF6EB;
     color: #191410;
     line-height: 1.6;
@@ -29,7 +37,6 @@ body.intro {
 .wedding-container {
     display: flex;
     flex-direction: column;
-    gap: 60px;
     max-width: 800px;
     margin: 0 auto;
     padding: 0;
@@ -90,11 +97,17 @@ body.intro .header-content-overlay {
     transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
+body.intro .love-feature {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
 .label-left {
     color: #fff;
     font-size: 12px;
     text-transform: lowercase;
-    font-family: 'Inter', sans-serif;
+    
     font-weight: 300;
     letter-spacing: 1px;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
@@ -114,7 +127,7 @@ body.intro .header-content-overlay {
     border-radius: 12px;
     font-size: 11px;
     text-transform: lowercase;
-    font-family: 'Inter', sans-serif;
+    
     font-weight: 300;
     letter-spacing: 1px;
     backdrop-filter: blur(4px);
@@ -124,7 +137,7 @@ body.intro .header-content-overlay {
     color: #fff;
     font-size: 12px;
     text-transform: lowercase;
-    font-family: 'Inter', sans-serif;
+    
     font-weight: 300;
     letter-spacing: 1px;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
@@ -133,7 +146,7 @@ body.intro .header-content-overlay {
 .couple-names {
     display: flex;
     flex-direction: column;
-    font-family: 'Playfair Display', serif;
+    font-family: 'Foglihten', 'Playfair Display', serif;
     font-size: 42px;
     font-weight: 400;
     color: #fff;
@@ -156,7 +169,7 @@ body.intro .header-content-overlay {
 }
 
 .wedding-date {
-    font-family: 'Inter', sans-serif;
+    
     font-size: 16px;
     color: #fff;
     margin-bottom: auto;
@@ -168,7 +181,7 @@ body.intro .header-content-overlay {
 
 .photo-quote {
     color: #fff;
-    font-family: 'Inter', sans-serif;
+    
     font-size: 13px;
     line-height: 1.6;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
@@ -259,7 +272,7 @@ body.intro .header-content-overlay {
 }
 
 .envelope-hint {
-    font-family: 'Inter', sans-serif;
+    
     font-size: 13px;
     color: #6b6b6b;
     font-weight: 400;
@@ -275,17 +288,30 @@ body.intro .header-content-overlay {
     pointer-events: none;
 }
 
-.love-text {
-    overflow: hidden;
+.love-feature {
+    width: 100vw;
     position: relative;
-    z-index: 3;
-    margin-top: -315px;
-    font-family: 'Playfair Display', serif;
-    font-size: 300px;
-    letter-spacing: 0.1em;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    overflow: visible;
+    z-index: 10;
+}
+
+.love-text {
+    overflow: visible;
+    position: relative;
+    z-index: 10;
+    margin-top: -250px;
+    font-family: 'Foglihten', 'Playfair Display', serif;
+    font-size: 74vw;
+    letter-spacing: 0.05em;
     font-weight: 400;
     color: #8C9F47;
-    line-height: 0.8;
+    line-height: 0.75;
+    width: 100%;
+    text-align: center;
 }
 
 /* Guest Invitation */
@@ -294,7 +320,7 @@ body.intro .header-content-overlay {
 }
 
 .section-text-wrapper {
-    font-family: 'Jersey 25', serif;
+    font-family: 'Foglihten', serif;
     padding: 0 40px;
 }
 
@@ -308,11 +334,29 @@ body.intro .header-content-overlay {
 }
 
 .section-text {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Foglihten', sans-serif;
     font-size: 16px;
     color: #2C2C2C;
     line-height: 1.8;
     margin-bottom: 30px;
+}
+
+/* Countdown */
+.countdown-block {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.countdown-label {
+    font-size: 14px;
+    color: #2C2C2C;
+    margin-bottom: 8px;
+}
+
+.countdown-value {
+    font-size: 28px;
+    font-weight: 500;
+    color: #8C9F47;
 }
 
 /* Date Selection */
@@ -345,7 +389,6 @@ body.intro .header-content-overlay {
     padding: 10px;
     width: 100%;
     border-bottom: 1px solid #2C2C2C;
-    font-family: 'Inter', sans-serif;
     font-size: 24px;
     font-weight: 600;
     color: #2C2C2C;
@@ -354,7 +397,7 @@ body.intro .header-content-overlay {
 }
 
 .calendar-day .month-label {
-    font-family: 'Inter', sans-serif;
+    
     font-size: 11px;
     font-weight: 300;
     color: #FAF6EB;
@@ -458,7 +501,7 @@ body.intro .header-content-overlay {
 }
 
 .one-love-subtitle {
-    font-family: 'Inter', sans-serif;
+    
     font-size: 16px;
     color: #fff;
     font-weight: 300;
@@ -470,7 +513,7 @@ body.intro .header-content-overlay {
 }
 
 .section-subtitle {
-    font-family: 'Inter', sans-serif;
+    
     font-size: 14px;
     color: #FAF6EB;
     margin-bottom: 25px;
@@ -484,7 +527,6 @@ body.intro .header-content-overlay {
     display: block;
     filter: grayscale(100%);
     border-radius: 4px;
-    margin-top: 20px;
 }
 
 
@@ -504,7 +546,7 @@ body.intro .header-content-overlay {
 }
 
 .site-subtitle {
-    font-family: 'Inter', sans-serif;
+    
     font-size: 14px;
     color: #FAF6EB;
     text-transform: lowercase;
@@ -518,7 +560,7 @@ body.intro .header-content-overlay {
     display: flex;
     justify-content: space-between;
     width: 102%;
-    font-family: 'Inter', sans-serif;
+    
     font-size: 5vw;
     color: #8C9F47;
     background-color: #FAF6EB;
@@ -533,14 +575,14 @@ body.intro .header-content-overlay {
     overflow: hidden;
     margin-top: calc(-60px - 3vw);
     background-color: #8C9F47;
-    margin-bottom: 60px;
+    margin-bottom: 0;
     color: #FAF6EB;
 }
 
 .location-section .section-label {
     text-align: right;
     margin: 40px 20px 20px 0;
-    font-family: 'Inter', sans-serif;
+    
     font-size: 16px;
     letter-spacing: 1px;
     font-weight: 300;
@@ -560,28 +602,103 @@ body.intro .header-content-overlay {
     flex-direction: column;
 }
 
-.location-details {
+.location-block {
     padding: 20px;
-    font-family: 'Inter', sans-serif;
-    font-size: 15px;
-    line-height: 1.8;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
 }
 
-.location-details p {
-    margin-bottom: 5px;
+.location-block:last-of-type {
+    margin-bottom: 20px;
+}
+
+.location-block-label {
+    
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.6;
+    margin-bottom: 8px;
+}
+
+.location-address {
+    
+    font-size: 15px;
+    line-height: 1.8;
+    margin-bottom: 15px;
 }
 
 .location-photo-wrapper {
-    padding: 20px;
+    padding: 20px 0;
 }
 
+.location-section .btn-map,
 .location-section .btn-primary {
-    margin: 20px;
-    margin-bottom: 40px;
-    width: calc(100% - 40px);
+    display: block;
+    width: 100%;
     border: 1px solid #FAF6EB;
     border-radius: 30px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.location-section .btn-map:hover {
+    background-color: #FAF6EB;
+    color: #8C9F47;
+}
+
+/* Timing Section */
+.timing-section {
+    background-color: #7d3d28;
+    color: #f5ebe0;
+    padding: 40px 30px 50px;
+}
+
+.timing-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 27px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.timing-items {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.timing-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.timing-time {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.timing-desc {
+    
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.4;
+}
+
+.timing-heart {
+    display: flex;
+    justify-content: center;
+    margin-top: 28px;
+    color: #fff;
+}
+
+.timing-heart svg {
+    width: 20px;
+    height: 20px;
 }
 
 /* Buttons */
@@ -591,7 +708,7 @@ body.intro .header-content-overlay {
     color: #fff;
     border: none;
     padding: 14px 28px;
-    font-family: 'Inter', sans-serif;
+    
     font-size: 14px;
     font-weight: 500;
     text-transform: lowercase;
@@ -696,6 +813,10 @@ body:not(.intro) .music-toggle {
     font-size: 25px;
 }
 
+.details-photo-wrapper {
+    margin-bottom: 40px;
+}
+
 .title-rest {
     letter-spacing: 0.2vw;
     font-size: 110px;
@@ -731,7 +852,7 @@ body:not(.intro) .music-toggle {
 }
 
 .faq-text {
-    font-family: 'Inter', sans-serif;
+    
     font-size: 15px;
     color: #2C2C2C;
     line-height: 1.8;
@@ -753,7 +874,7 @@ body:not(.intro) .music-toggle {
 }
 
 .questionnaire-deadline {
-    font-family: 'Inter', sans-serif;
+    
     font-size: 14px;
     color: #7A8A3D;
     font-weight: 500;
@@ -767,6 +888,49 @@ body:not(.intro) .music-toggle {
     color: #2C2C2C;
     border: 1px solid #2C2C2C;
     border-radius: 30px;
+}
+
+/* Coordinator Section */
+.coordinator-section {
+    padding: 40px 20px 60px;
+    margin-top: 20px;
+    border-top: 1px solid rgba(44, 44, 44, 0.15);
+}
+
+.coordinator-section .section-title-serif {
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.coordinator-section .organizer-name,
+.coordinator-section .organizer-contacts {
+    text-align: center;
+}
+
+/* Details subtitle */
+.details-subtitle {
+    
+    font-size: 18px;
+    font-weight: 600;
+    color: #2C2C2C;
+    margin: 30px 0 12px 0;
+}
+
+.details-section .organizer-contacts {
+    margin-top: 12px;
+}
+
+.questionnaire-hint {
+    font-style: italic;
+    margin-bottom: 16px;
+}
+
+.questionnaire-photo-wrapper {
+    margin: 20px 0;
+}
+
+.questionnaire-photo-wrapper .section-photo {
+    border-radius: 4px;
 }
 
 /* Organizer Section */
@@ -787,7 +951,7 @@ body:not(.intro) .music-toggle {
 }
 
 .organizer-text {
-    font-family: 'Inter', sans-serif;
+    
     font-size: 15px;
     line-height: 1.6;
     color: #2C2C2C;
@@ -799,7 +963,7 @@ body:not(.intro) .music-toggle {
 }
 
 .organizer-name {
-    font-family: 'Inter', sans-serif;
+    
     font-size: 17px;
     font-weight: 600;
     color: #8C9F47;
@@ -808,7 +972,7 @@ body:not(.intro) .music-toggle {
 }
 
 .organizer-contacts {
-    font-family: 'Inter', sans-serif;
+    
     font-size: 15px;
     text-align: center;
     margin: 0;
@@ -900,7 +1064,7 @@ body:not(.intro) .music-toggle {
 }
 
 .modal-deadline {
-    font-family: 'Inter', sans-serif;
+    
     font-size: 14px;
     color: #2C2C2C;
     margin: -10px 0 20px 0;
@@ -913,7 +1077,7 @@ body:not(.intro) .music-toggle {
 
 .form-label {
     display: block;
-    font-family: 'Inter', sans-serif;
+    
     font-size: 14px;
     font-weight: 500;
     color: #2C2C2C;
@@ -935,7 +1099,7 @@ body:not(.intro) .music-toggle {
 .fio-row input {
     flex: 1;
     padding: 12px 16px;
-    font-family: 'Inter', sans-serif;
+    
     font-size: 15px;
     color: #2C2C2C;
     background: #fff;
@@ -1030,7 +1194,7 @@ body:not(.intro) .music-toggle {
 }
 
 .checkbox-label {
-    font-family: 'Inter', sans-serif;
+    
     font-size: 15px;
     color: #2C2C2C;
     line-height: 1.5;
@@ -1063,7 +1227,7 @@ body:not(.intro) .music-toggle {
 }
 
 .wedding-footer p {
-    font-family: 'Inter', sans-serif;
+    
     font-size: 12px;
     color: #FAF6EB;
     font-weight: 300;

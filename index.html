@@ -21,15 +21,26 @@
     </div>
 
     <audio id="wedding-music" loop preload="auto">
-        <source src="michael_jackson_this_is_it_13 - Billie Jean.mp3" type="audio/mpeg">
+        <source src="Nat_King_Cole_-_L-O-V-E_(Multilingual_Version.mp3" type="audio/mpeg">
     </audio>
 
-    <button type="button" class="music-toggle" id="music-toggle" aria-label="Включить или выключить музыку" title="Музыка" aria-pressed="true" hidden>
+    <button type="button" class="music-toggle" id="music-toggle" aria-label="Включить или выключить музыку"
+        title="Музыка" aria-pressed="true" hidden>
         <span class="music-toggle-icon music-toggle-on" aria-hidden="true">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+            </svg>
         </span>
         <span class="music-toggle-icon music-toggle-off" aria-hidden="true">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <line x1="23" y1="9" x2="17" y2="15"></line>
+                <line x1="17" y1="9" x2="23" y2="15"></line>
+            </svg>
         </span>
     </button>
 
@@ -50,9 +61,10 @@
                         <div>ПАВЕЛ &</div>
                         <div>МАРИЯ</div>
                     </div>
-                    <div class="wedding-date">24.07.2025</div>
+                    <div class="wedding-date">15.05.2026</div>
                     <div class="photo-quote">
-                        Не существует шести или семи чудес в мире. Есть только одно: это любовь.
+                        Руфь 1:16 «…я не оставлю тебя и не вернусь. ведь куда твой путь — туда и мой, где твое
+                        пристанище — там и мое, твой народ будет моим народом, твой Бог — моим Богом.»
                     </div>
                 </div>
             </div>
@@ -71,9 +83,15 @@
             <div class="section-text-wrapper">
                 <h2 class="section-title-serif">Дорогие гости!</h2>
                 <p class="section-text">
-                    Этот день настал — мы женимся!<br><br> Приглашаем Вас разделить с нами<br> радость этого особенного
-                    дня.
+                    Дорогие и близкие! Приглашаем вас разделить с нами трогательный и важный момент нашей жизни — день
+                    нашей свадьбы.
                 </p>
+            </div>
+
+            <!-- Wedding Countdown -->
+            <div class="countdown-block">
+                <p class="countdown-label">До свадьбы осталось:</p>
+                <p class="countdown-value" id="countdown-display">—</p>
             </div>
 
             <!-- Date Selection -->
@@ -82,17 +100,17 @@
                     <div class="calendar-day">
                         <div class="day-name">четверг</div>
                         <div class="month-label">июль</div>
-                        <div class="day-number">23</div>
+                        <div class="day-number">14</div>
                     </div>
                     <div class="calendar-day selected">
                         <div class="day-name">пятница</div>
                         <div class="month-label">июль</div>
-                        <div class="day-number">24</div>
+                        <div class="day-number">15</div>
                     </div>
                     <div class="calendar-day">
                         <div class="day-name">суббота</div>
                         <div class="month-label">июль</div>
-                        <div class="day-number">25</div>
+                        <div class="day-number">16</div>
                     </div>
                 </div>
             </div>
@@ -120,14 +138,54 @@
                 <span class="title-part">LOCA</span>
                 <span class="title-part-large">TION</span>
             </div>
-            <div class="location-details">
-                <p>Банкетный Комплекс "Villa Arcobaleno"</p>
-                <p>МО, д. Высоково, ул. Центральная д. 21А</p>
+
+            <div class="location-block">
+                <p class="location-block-label">Церемония венчания пройдет по адресу:</p>
+                <p class="location-address">ул. Бородина, 23, Ульяновск</p>
+                <div class="location-photo-wrapper">
+                    <img src="assets/IMG_3757.JPG" alt="Церковь — ул. Бородина, 23" class="section-photo">
+                </div>
+                <a href="https://yandex.ru/maps?ol=geo&text=%D1%83%D0%BB%D0%B8%D1%86%D0%B0%20%D0%91%D0%BE%D1%80%D0%BE%D0%B4%D0%B8%D0%BD%D0%B0,%2023&sll=48.384213,54.339836&sspn=0.004797,0.008211&si=442mvjteqcfjywgph7kabq0488"
+                    class="btn-primary btn-map" target="_blank" rel="noopener">открыть карту</a>
             </div>
-            <div class="location-photo-wrapper">
-                <img src="assets/location.png" alt="Место проведения" class="section-photo">
+
+            <div class="location-block">
+                <p class="location-block-label">Праздничный банкет по адресу:</p>
+                <p class="location-address">Своя ферма, Виноградная ул., 11/1, рабочий посёлок Ишеевка</p>
+                <div class="location-photo-wrapper">
+                    <img src="assets/location.png" alt="Своя ферма — Ишеевка" class="section-photo">
+                </div>
+                <a href="https://yandex.ru/maps/org/svoya_ferma/158080245915?si=442mvjteqcfjywgph7kabq0488"
+                    class="btn-primary btn-map" target="_blank" rel="noopener">открыть карту</a>
             </div>
-            <button class="btn-primary">открыть карту</button>
+        </div>
+
+        <!-- Timing Section -->
+        <div class="timing-section">
+            <h2 class="timing-title">Тайминг</h2>
+            <div class="timing-items">
+                <div class="timing-item">
+                    <span class="timing-time">12:00</span>
+                    <span class="timing-desc">Венчание</span>
+                </div>
+                <div class="timing-item">
+                    <span class="timing-time">15:00</span>
+                    <span class="timing-desc">Сбор гостей</span>
+                </div>
+                <div class="timing-item">
+                    <span class="timing-time">16:00</span>
+                    <span class="timing-desc">Начало банкета</span>
+                </div>
+                <div class="timing-item">
+                    <span class="timing-time">22:00</span>
+                    <span class="timing-desc">Окончание торжества</span>
+                </div>
+            </div>
+            <div class="timing-heart" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+            </div>
         </div>
 
         <!-- Dress Code Section -->
@@ -146,49 +204,39 @@
                     <div class="title-rest">DETAILS</div>
                 </div>
             </div>
-            <p class="section-text">
-                Мы догадываемся, что после получения приглашения у вас может появиться ряд вопросов.
-            </p>
             <div class="details-photo-wrapper">
                 <img src="assets/IMG_3831.JPG" alt="Руки" class="section-photo">
             </div>
         </div>
-
+        
         <!-- FAQs Section -->
         <div class="faqs-section">
             <div class="faq-item">
                 <div class="faq-number">01</div>
                 <p class="faq-text">
-                    Чтобы наши руки были свободны для объятий, будем рады легким подаркам в конвертах.
+                    Мы создали телеграмм канал для гостей, будем рады видеть там ваши фото и видео. присоединяйтесь!.
                 </p>
             </div>
             <div class="faq-item">
                 <div class="faq-number">02</div>
                 <p class="faq-text">
-                    Не переживайте, мы не будем вызывать гостей говорить тосты. Во время нашей свадьбы будет действовать
-                    «открытый микрофон».
-                </p>
-            </div>
-            <div class="faq-item">
-                <div class="faq-number">03</div>
-                <p class="faq-text">
-                    Если Вы хотите преподнести нам цветы, то пусть это будет одна белая роза, так у нас получится один
-                    роскошный букет.
-                </p>
-            </div>
-            <div class="faq-item">
-                <div class="faq-number">04</div>
-                <p class="faq-text">
-                    детей на свадьбе игнорировать
-                </p>
-            </div>
-            <div class="faq-item">
-                <div class="faq-number">05</div>
-                <p class="faq-text">
-                    фото со свадьбы можно найти тут
+                    Мы всегда ценим и любим креатив, поэтому если у вас возникло желание сделать что-то особенное для нас,
+                    вы можете обратиться к нашему организатору для воплощения своих идей.
                 </p>
             </div>
         </div>
+
+        <!-- Coordinator Section -->
+        <div class="coordinator-section">
+            <h2 class="section-title-serif">Организатор</h2>
+            <p class="organizer-name">Олег Соболев</p>
+            <p class="organizer-contacts">
+                <a href="tel:+79171214470" class="organizer-link">+7 (917) 121 44 70</a><br>
+                <a href="https://t.me/placeholder" class="organizer-link" target="_blank" rel="noopener">Telegram:
+                    @placeholder</a>
+            </p>
+        </div>
+
 
         <!-- Guest Questionnaire Section -->
         <div class="questionnaire-section">
@@ -197,22 +245,12 @@
                 А еще мы очень хотим, чтобы у вас остались самые лучшие воспоминания о нашей свадьбе. Поэтому, просим
                 вас заполнить анкету ниже.
             </p>
+            <p class="section-text questionnaire-hint">Если вы будете не один, укажите всех, включая детей.</p>
+            <div class="questionnaire-photo-wrapper">
+                <img src="assets/IMG_3757.JPG" alt="Павел и Мария" class="section-photo">
+            </div>
             <p class="questionnaire-deadline">Дедлайн: 15.04.2026</p>
             <button class="btn-primary" id="open-questionnaire-btn">заполнить анкету</button>
-        </div>
-
-        <!-- Organizer / Performances -->
-        <div class="organizer-section">
-            <h2 class="organizer-title">Хотите выступить на свадьбе?</h2>
-            <p class="organizer-text">
-                Если вы хотите поздравить нас песней, танцем или чем-то особенным — напишите организатору,
-                и мы обязательно найдём для вас место в программе.
-            </p>
-            <p class="organizer-name">Матвей Загвоздкин</p>
-            <p class="organizer-contacts">
-                <a href="tel:+79990000000" class="organizer-link">+7 (999) 000-00-00</a><br>
-                <a href="https://t.me/placeholder" class="organizer-link" target="_blank" rel="noopener">Telegram: @placeholder</a>
-            </p>
         </div>
     </div>
 
@@ -229,7 +267,8 @@
                     <div class="fio-fields" id="fio-fields">
                         <div class="fio-row">
                             <input type="text" name="fio[]" placeholder="Фамилия Имя Отчество" required>
-                            <button type="button" class="btn-add-fio" id="add-fio-btn" aria-label="Добавить ещё гостя" title="Добавить ещё гостя">
+                            <button type="button" class="btn-add-fio" id="add-fio-btn" aria-label="Добавить ещё гостя"
+                                title="Добавить ещё гостя">
                                 <span class="plus-icon">+</span>
                             </button>
                         </div>
@@ -248,7 +287,7 @@
     </div>
 
     <script>
-        (function() {
+        (function () {
             var body = document.body;
             var envelopeScreen = document.getElementById('envelope-screen');
             var envelope = document.getElementById('envelope');
@@ -260,23 +299,23 @@
                 envelope.classList.add('envelope-opened');
                 envelopeScreen.setAttribute('aria-hidden', 'true');
 
-                setTimeout(function() {
+                setTimeout(function () {
                     envelopeScreen.classList.add('envelope-screen-hidden');
                     body.classList.remove('intro');
                     var musicToggle = document.getElementById('music-toggle');
                     if (musicToggle) musicToggle.removeAttribute('hidden');
-                    try { audio.play(); } catch (e) {}
+                    try { audio.play(); } catch (e) { }
                 }, 900);
             }
 
             envelope.addEventListener('click', openInvitation);
-            envelope.addEventListener('keydown', function(e) {
+            envelope.addEventListener('keydown', function (e) {
                 if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openInvitation(); }
             });
 
             var musicToggle = document.getElementById('music-toggle');
             if (musicToggle) {
-                musicToggle.addEventListener('click', function() {
+                musicToggle.addEventListener('click', function () {
                     if (audio.paused) {
                         audio.play();
                         musicToggle.setAttribute('aria-pressed', 'true');
@@ -289,7 +328,7 @@
         })();
     </script>
     <script>
-        (function() {
+        (function () {
             const modal = document.getElementById('questionnaire-modal');
             const openBtn = document.getElementById('open-questionnaire-btn');
             const closeBtn = document.getElementById('close-modal-btn');
@@ -312,27 +351,27 @@
             openBtn.addEventListener('click', openModal);
             closeBtn.addEventListener('click', closeModal);
 
-            modal.addEventListener('click', function(e) {
+            modal.addEventListener('click', function (e) {
                 if (e.target === modal) closeModal();
             });
 
-            document.addEventListener('keydown', function(e) {
+            document.addEventListener('keydown', function (e) {
                 if (e.key === 'Escape' && modal.classList.contains('modal-visible')) closeModal();
             });
 
-            addFioBtn.addEventListener('click', function() {
+            addFioBtn.addEventListener('click', function () {
                 const row = document.createElement('div');
                 row.className = 'fio-row';
                 row.innerHTML = '<input type="text" name="fio[]" placeholder="Фамилия Имя Отчество">' +
                     '<button type="button" class="btn-remove-fio" aria-label="Удалить">&times;</button>';
                 fioFields.appendChild(row);
 
-                row.querySelector('.btn-remove-fio').addEventListener('click', function() {
+                row.querySelector('.btn-remove-fio').addEventListener('click', function () {
                     row.remove();
                 });
             });
 
-            form.addEventListener('submit', function(e) {
+            form.addEventListener('submit', function (e) {
                 e.preventDefault();
                 const formData = new FormData(form);
                 const guests = formData.getAll('fio[]').filter(v => v.trim());
@@ -341,6 +380,28 @@
                 closeModal();
                 form.reset();
             });
+        })();
+    </script>
+    <script>
+        (function () {
+            var target = new Date('2026-05-15T12:00:00');
+            var el = document.getElementById('countdown-display');
+            if (!el) return;
+            function update() {
+                var now = new Date();
+                var diff = target - now;
+                if (diff <= 0) {
+                    var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+                    var targetDay = new Date(target.getFullYear(), target.getMonth(), target.getDate());
+                    el.textContent = today.getTime() === targetDay.getTime() ? 'Свадьба сегодня!' : 'Свадьба состоялась!';
+                    return;
+                }
+                var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                el.textContent = days + ' дн. ' + hours + ' ч.';
+            }
+            update();
+            setInterval(update, 60000);
         })();
     </script>
 </body>
