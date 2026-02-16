@@ -51,4 +51,4 @@ pavel-maria/
 
 - **Accessibility:** ARIA labels, keyboard navigation
 - **Mobile:** Responsive layout (viewport meta)
-- **Deployment:** Can be served as static files (GitHub Pages, Netlify, etc.)
+- **Deployment:** Docker (Dockerfile + docker-compose); `docker compose up -d` on server; restart: always
