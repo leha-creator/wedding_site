@@ -19,6 +19,7 @@
 }
 
 body {
+    max-width: 430px;
     width: 100%;
     font-family: 'Foglihten', sans-serif;
     letter-spacing: 2px;
