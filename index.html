@@ -371,14 +371,37 @@
                 });
             });
 
-            form.addEventListener('submit', function (e) {
+            form.addEventListener('submit', async function (e) {
                 e.preventDefault();
-                const formData = new FormData(form);
-                const guests = formData.getAll('fio[]').filter(v => v.trim());
-                const transport = form.querySelector('[name="transport"]').checked ? 'да' : 'нет';
-                console.log('Guests:', guests, 'Transport:', transport);
-                closeModal();
-                form.reset();
+                const submitBtn = form.querySelector('.btn-submit');
+                const originalText = submitBtn.textContent;
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'отправка...';
+
+                const guests = Array.from(form.querySelectorAll('input[name="fio[]"]'))
+                    .map(function (inp) { return inp.value.trim(); })
+                    .filter(Boolean);
+                const transport = form.querySelector('[name="transport"]').checked;
+
+                try {
+                    const res = await fetch('/api/submit', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ guests: guests, transport: transport })
+                    });
+                    const json = await res.json();
+                    if (!res.ok) {
+                        throw new Error(json.error || 'Ошибка отправки');
+                    }
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                    closeModal();
+                    form.reset();
+                } catch (err) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                    alert(err.message || 'Не удалось отправить. Попробуйте позже.');
+                }
             });
         })();
     </script>

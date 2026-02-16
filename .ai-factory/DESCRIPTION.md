@@ -18,25 +18,32 @@ A single-page wedding invitation website. Guests open an animated envelope to re
 
 - **Language:** HTML, CSS, JavaScript (vanilla)
 - **Framework:** None — static site
-- **Database:** None — form data is logged to console only
-- **Build:** None — no bundler or package.json
+- **Backend:** Node.js + Express — serves static files, POST /api/submit for form
+- **Database:** None — form data sent to API, forwarded to Telegram chat; Google Sheets planned
+- **Build:** None — no bundler
 - **Assets:** Images (JPG, PNG), audio (MP3)
 
 ## Structure
 
 ```
 pavel-maria/
+├── server.js           # Express server entry point
+├── package.json        # express, dotenv
+├── src/
+│   ├── routes/submit.js    # POST /api/submit
+│   └── services/          # telegram.js, sheets.js (placeholders)
 ├── index.html          # Single HTML file, inline scripts
 ├── css/index.css       # Styles
-├── js/script.js        # (currently empty)
 ├── assets/             # Images
 └── *.mp3, *.jpg       # Media in root
 ```
 
 ## Architecture Notes
 
-- Single `index.html` with inline scripts for envelope, music toggle, modal
-- Questionnaire form submits via JS (`e.preventDefault()`), data logged to console — no backend
+- Express serves static files from project root
+- Questionnaire form submits via fetch to /api/submit (guests, transport)
+- Telegram: new submissions sent to configured chat via Bot API (TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID)
+- Future: Google Sheets write
 - Accessibility: ARIA attributes, keyboard support (Enter/Space on envelope, Escape on modal)
 - Russian locale (`lang="ru"`)
 
