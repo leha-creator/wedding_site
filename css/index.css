@@ -1,5 +1,10 @@
 /* Index2 Specific Styles - Wedding Invitation Layout */
 
+:root {
+    --green: #9ca763;
+    --milk: #FAF6EB;
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300..700;1,300..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300..700;1,300..700&family=Jersey+25&display=swap');
@@ -19,20 +24,19 @@
 }
 
 body {
-    max-width: 430px;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
     width: 100%;
     font-family: 'Foglihten', sans-serif;
     letter-spacing: 2px;
-    background-color: #FAF6EB;
+    background-color: var(--milk);
     color: #191410;
     line-height: 1.6;
-    overflow-x: hidden;
 }
 
 body.intro {
     overflow: hidden;
-    height: 100vh;
-    height: 100dvh;
 }
 
 .wedding-container {
@@ -263,7 +267,9 @@ body.intro .love-feature {
 .envelope-img {
     display: block;
     height: auto;
-    max-width: 90vw;
+    max-width: min(90vw, 420px);
+    max-height: min(70vh, 520px);
+    object-fit: contain;
     border-radius: 4px;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -273,7 +279,6 @@ body.intro .love-feature {
 }
 
 .envelope-hint {
-    
     font-size: 13px;
     color: #6b6b6b;
     font-weight: 400;
@@ -289,13 +294,24 @@ body.intro .love-feature {
     pointer-events: none;
 }
 
+@media (min-width: 1024px) {
+    .envelope-paper {
+        height: 100vh;
+        min-height: 100vh;
+        bottom: 0;
+        top: 0;
+        clip-path: none;
+        -webkit-clip-path: none;
+    }
+
+    .envelope-block {
+        z-index: 2;
+    }
+}
+
 .love-feature {
-    width: 100vw;
+    width: 100%;
     position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
     overflow: visible;
     z-index: 10;
 }
@@ -304,12 +320,11 @@ body.intro .love-feature {
     overflow: visible;
     position: relative;
     z-index: 10;
-    margin-top: -250px;
     font-family: 'Foglihten', 'Playfair Display', serif;
-    font-size: 74vw;
+    font-size: clamp(18cqw, 75vw, 323px);
     letter-spacing: 0.05em;
     font-weight: 400;
-    color: #8C9F47;
+    color: var(--green);
     line-height: 0.75;
     width: 100%;
     text-align: center;
@@ -357,7 +372,7 @@ body.intro .love-feature {
 .countdown-value {
     font-size: 28px;
     font-weight: 500;
-    color: #8C9F47;
+    color: var(--green);
 }
 
 /* Date Selection */
@@ -444,12 +459,7 @@ body.intro .love-feature {
 /* One Love Section */
 .one-love-section {
     margin-top: 50px;
-    width: 100vw;
     position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
 }
 
 .one-love-photo-wrapper {
@@ -485,7 +495,7 @@ body.intro .love-feature {
 }
 
 .one-love-title {
-    font-family: 'Playfair Display', serif;
+    font-style: italic;
     color: #fff;
 }
 
@@ -502,7 +512,6 @@ body.intro .love-feature {
 }
 
 .one-love-subtitle {
-    
     font-size: 16px;
     color: #fff;
     font-weight: 300;
@@ -559,11 +568,11 @@ body.intro .love-feature {
 .section-tagline {
     margin-left: -4px;
     display: flex;
+    display: none;
     justify-content: space-between;
     width: 102%;
-    
     font-size: 5vw;
-    color: #8C9F47;
+    color: var(--green);
     background-color: #FAF6EB;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -574,8 +583,7 @@ body.intro .love-feature {
 .location-section {
     width: 100%;
     overflow: hidden;
-    margin-top: calc(-60px - 3vw);
-    background-color: #8C9F47;
+    background-color: var(--green);
     margin-bottom: 0;
     color: #FAF6EB;
 }
@@ -643,12 +651,12 @@ body.intro .love-feature {
 
 .location-section .btn-map:hover {
     background-color: #FAF6EB;
-    color: #8C9F47;
+    color: var(--green);
 }
 
 /* Timing Section */
 .timing-section {
-    background-color: #7d3d28;
+    background-color: #736046;
     color: #f5ebe0;
     padding: 40px 30px 50px;
 }
@@ -705,7 +713,7 @@ body.intro .love-feature {
 /* Buttons */
 .btn-primary {
     border-radius: 30px;
-    background-color: #8C9F47;
+    background-color: var(--green);
     color: #fff;
     border: none;
     padding: 14px 28px;
@@ -735,7 +743,7 @@ body.intro .love-feature {
     width: 52px;
     height: 52px;
     border-radius: 50%;
-    background-color: #8C9F47;
+    background-color: var(--green);
     color: #FAF6EB;
     border: none;
     cursor: pointer;
@@ -785,9 +793,7 @@ body:not(.intro) .music-toggle {
 
 /* Details Section */
 .details-title {
-    margin-top: -50vw;
     overflow: hidden;
-    min-height: 150vw;
     position: relative;
     color: #7A8A3D;
     font-size: 160px;
@@ -798,20 +804,19 @@ body:not(.intro) .music-toggle {
 }
 
 .title-letter-large {
-    left: -15vw;
+    left: -3cqw;
     position: absolute;
-    font-size: 150vw;
+    font-size: clamp(18cqw, 75vw, 323px);
     line-height: 0.8;
     margin-right: 5px;
 }
 
 .details-section .section-label {
     text-align: right;
-    margin-top: 65vw;
-    margin-right: 20vw;
+    margin-right: 28%;
     color: #7A8A3D;
     letter-spacing: normal;
-    font-size: 25px;
+    font-size: 22px;
 }
 
 .details-photo-wrapper {
@@ -820,7 +825,7 @@ body:not(.intro) .music-toggle {
 
 .title-rest {
     letter-spacing: 0.2vw;
-    font-size: 110px;
+    font-size: 80px;
     line-height: 1;
 }
 
@@ -884,6 +889,7 @@ body:not(.intro) .music-toggle {
 }
 
 .questionnaire-section .btn-primary {
+    font-family: 'Foglihten', sans-serif;
     width: 100%;
     background-color: transparent;
     color: #2C2C2C;
@@ -967,7 +973,7 @@ body:not(.intro) .music-toggle {
     
     font-size: 17px;
     font-weight: 600;
-    color: #8C9F47;
+    color: var(--green);
     text-align: center;
     margin: 0 0 12px 0;
 }
@@ -986,7 +992,7 @@ body:not(.intro) .music-toggle {
 }
 
 .organizer-link:hover {
-    color: #8C9F47;
+    color: var(--green);
     text-decoration: underline;
 }
 
@@ -1056,7 +1062,6 @@ body:not(.intro) .music-toggle {
 }
 
 .modal-title {
-    font-family: 'Jersey 25', serif;
     font-size: 28px;
     font-weight: 600;
     text-align: right;
@@ -1065,7 +1070,6 @@ body:not(.intro) .music-toggle {
 }
 
 .modal-deadline {
-    
     font-size: 14px;
     color: #2C2C2C;
     margin: -10px 0 20px 0;
@@ -1078,7 +1082,7 @@ body:not(.intro) .music-toggle {
 
 .form-label {
     display: block;
-    
+
     font-size: 14px;
     font-weight: 500;
     color: #2C2C2C;
@@ -1100,7 +1104,6 @@ body:not(.intro) .music-toggle {
 .fio-row input {
     flex: 1;
     padding: 12px 16px;
-    
     font-size: 15px;
     color: #2C2C2C;
     background: #fff;
@@ -1120,7 +1123,7 @@ body:not(.intro) .music-toggle {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #8C9F47;
+    background-color: var(--green);
     color: #fff;
     border: none;
     border-radius: 50%;
@@ -1174,12 +1177,12 @@ body:not(.intro) .music-toggle {
 }
 
 .checkbox-option:hover .checkbox-custom {
-    border-color: #8C9F47;
+    border-color: var(--green);
 }
 
 .checkbox-option input:checked + .checkbox-custom {
-    background-color: #8C9F47;
-    border-color: #8C9F47;
+    background-color: var(--green);
+    border-color: var(--green);
 }
 
 .checkbox-option input:checked + .checkbox-custom::after {
@@ -1202,10 +1205,11 @@ body:not(.intro) .music-toggle {
 }
 
 .questionnaire-form .btn-submit {
+    font-family: 'Foglihten', sans-serif;
     width: 100%;
     margin-top: 10px;
     margin-bottom: 0;
-    background-color: #8C9F47;
+    background-color: var(--green);
     color: #fff;
     border: none;
 }
@@ -1237,6 +1241,10 @@ body:not(.intro) .music-toggle {
 
 /* Responsive Design */
 @media (max-width: 1400px) {
+    .details-section .section-label {
+        margin-right: 25%;
+    }
+
     .site-title {
         font-size: 80px;
     }
@@ -1244,7 +1252,6 @@ body:not(.intro) .music-toggle {
     .location-title {
         font-size: 100px;
     }
-
 
     .details-title {
         font-size: 120px;
@@ -1310,7 +1317,7 @@ body:not(.intro) .music-toggle {
     }
 
     .title-rest {
-        font-size: 60px;
+        font-size:48px;
     }
 
     .section-title-serif {
@@ -1359,5 +1366,12 @@ body:not(.intro) .music-toggle {
     .calendar-day.selected .day-number::before {
         width: 140px;
         height: 140px;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .title-rest {
+        font-size: 34px;
     }
 }

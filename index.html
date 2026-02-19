@@ -53,8 +53,8 @@
                     <div class="top-labels">
                         <span class="label-small label-left">любовь</span>
                         <div class="labels-right">
-                            <span class="label-small label-button">свадьбе</span>
-                            <span class="label-small">той</span>
+                            <span class="label-small label-button">сильнее</span>
+                            <span class="label-small">всего</span>
                         </div>
                     </div>
                     <div class="couple-names">
@@ -83,7 +83,7 @@
             <div class="section-text-wrapper">
                 <h2 class="section-title-serif">Дорогие гости!</h2>
                 <p class="section-text">
-                    Дорогие и близкие! Приглашаем вас разделить с нами трогательный и важный момент нашей жизни — день
+                    Приглашаем вас разделить с нами трогательный и важный момент нашей жизни — день
                     нашей свадьбы.
                 </p>
             </div>
@@ -143,7 +143,7 @@
                 <p class="location-block-label">Церемония венчания пройдет по адресу:</p>
                 <p class="location-address">ул. Бородина, 23, Ульяновск</p>
                 <div class="location-photo-wrapper">
-                    <img src="assets/IMG_3757.JPG" alt="Церковь — ул. Бородина, 23" class="section-photo">
+                    <img src="assets/IMG_5828.JPG" alt="Церковь — ул. Бородина, 23" class="section-photo">
                 </div>
                 <a href="https://yandex.ru/maps?ol=geo&text=%D1%83%D0%BB%D0%B8%D1%86%D0%B0%20%D0%91%D0%BE%D1%80%D0%BE%D0%B4%D0%B8%D0%BD%D0%B0,%2023&sll=48.384213,54.339836&sspn=0.004797,0.008211&si=442mvjteqcfjywgph7kabq0488"
                     class="btn-primary btn-map" target="_blank" rel="noopener">открыть карту</a>
@@ -153,7 +153,7 @@
                 <p class="location-block-label">Праздничный банкет по адресу:</p>
                 <p class="location-address">Своя ферма, Виноградная ул., 11/1, рабочий посёлок Ишеевка</p>
                 <div class="location-photo-wrapper">
-                    <img src="assets/location.png" alt="Своя ферма — Ишеевка" class="section-photo">
+                    <img src="assets/IMG_2535.JPG" alt="Своя ферма — Ишеевка" class="section-photo">
                 </div>
                 <a href="https://yandex.ru/maps/org/svoya_ferma/158080245915?si=442mvjteqcfjywgph7kabq0488"
                     class="btn-primary btn-map" target="_blank" rel="noopener">открыть карту</a>
@@ -214,21 +214,21 @@
             <div class="faq-item">
                 <div class="faq-number">01</div>
                 <p class="faq-text">
-                    Мы создали телеграмм канал для гостей, будем рады видеть там ваши фото и видео. присоединяйтесь!.
+                    Мы создали телеграмм канал для гостей, будем рады видеть там ваши фото и видео. присоединяйтесь!
                 </p>
             </div>
             <div class="faq-item">
                 <div class="faq-number">02</div>
                 <p class="faq-text">
                     Мы всегда ценим и любим креатив, поэтому если у вас возникло желание сделать что-то особенное для нас,
-                    вы можете обратиться к нашему организатору для воплощения своих идей.
+                    вы можете обратиться к нашему ведущему для воплощения своих идей.
                 </p>
             </div>
         </div>
 
         <!-- Coordinator Section -->
         <div class="coordinator-section">
-            <h2 class="section-title-serif">Организатор</h2>
+            <h2 class="section-title-serif">Ведущий</h2>
             <p class="organizer-name">Олег Соболев</p>
             <p class="organizer-contacts">
                 <a href="tel:+79171214470" class="organizer-link">+7 (917) 121 44 70</a><br>
@@ -242,14 +242,9 @@
         <div class="questionnaire-section">
             <h2 class="section-title-serif">АНКЕТА<br> ДЛЯ ГОСТЕЙ</h2>
             <p class="section-text">
-                А еще мы очень хотим, чтобы у вас остались самые лучшие воспоминания о нашей свадьбе. Поэтому, просим
-                вас заполнить анкету ниже.
+                Пожалуйста, подтвердите свое присутствие и заполните анкету до 15.04.2026, чтобы мы могли планировать торжество наилучшим способом
             </p>
             <p class="section-text questionnaire-hint">Если вы будете не один, укажите всех, включая детей.</p>
-            <div class="questionnaire-photo-wrapper">
-                <img src="assets/IMG_3757.JPG" alt="Павел и Мария" class="section-photo">
-            </div>
-            <p class="questionnaire-deadline">Дедлайн: 15.04.2026</p>
             <button class="btn-primary" id="open-questionnaire-btn">заполнить анкету</button>
         </div>
     </div>
@@ -403,6 +398,87 @@
                     alert(err.message || 'Не удалось отправить. Попробуйте позже.');
                 }
             });
+        })();
+    </script>
+    <script>
+        (function () {
+            function fitTextToWidth(el, minFont, maxFont) {
+                if (!el || !el.parentElement) return;
+                var parent = el.parentElement;
+                var containerWidth = parent.clientWidth - (parseFloat(getComputedStyle(parent).paddingLeft) || 0) - (parseFloat(getComputedStyle(parent).paddingRight) || 0);
+                if (containerWidth <= 0) return;
+                var text = (el.textContent || '').trim();
+                if (!text) return;
+                minFont = minFont || 8;
+                maxFont = maxFont || 1800;
+                var measure = document.createElement('span');
+                measure.setAttribute('aria-hidden', 'true');
+                measure.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;pointer-events:none;';
+                measure.textContent = text;
+                var cs = getComputedStyle(el);
+                measure.style.fontFamily = cs.fontFamily;
+                measure.style.fontWeight = cs.fontWeight;
+                measure.style.fontStyle = cs.fontStyle;
+                measure.style.letterSpacing = cs.letterSpacing;
+                measure.style.textTransform = cs.textTransform;
+                document.body.appendChild(measure);
+                var low = minFont, high = maxFont, best = minFont;
+                for (var i = 0; i < 25; i++) {
+                    var mid = (low + high) / 2;
+                    measure.style.fontSize = mid + 'px';
+                    var w = measure.offsetWidth;
+                    if (w <= containerWidth) {
+                        low = mid;
+                        best = mid;
+                    } else {
+                        high = mid;
+                    }
+                }
+                document.body.removeChild(measure);
+                el.style.fontSize = Math.floor(best) + 'px';
+            }
+            function runFitAll() {
+                var selectors = [
+                    '.title-part',
+                    '.title-part-large',
+                    '.title-letter-large',
+                    '.love-text > div'
+                ];
+                selectors.forEach(function (sel) {
+                    document.querySelectorAll(sel).forEach(function (el) {
+                        fitTextToWidth(el);
+                    });
+                });
+                var titleLetter = document.querySelector('.title-letter-large');
+                var detailsTitle = document.querySelector('.details-title');
+                var sectionLabel = document.querySelector('.details-section .section-label');
+                if (titleLetter && detailsTitle) {
+                    var h = titleLetter.offsetHeight;
+                    detailsTitle.style.minHeight = h + 'px';
+                    detailsTitle.style.marginTop = '-' + (h * 0.2) + 'px';
+                    if (sectionLabel) {
+                        sectionLabel.style.marginTop = ((h / 2) - 45) + 'px';
+                    }
+                }
+                var loveText = document.querySelector('.love-text');
+                if (loveText) {
+                    var lh = loveText.offsetHeight;
+                    loveText.style.marginTop = '-' + (lh * 0.2) + 'px';
+                }
+            }
+            function debounce(fn, ms) {
+                var t;
+                return function () {
+                    clearTimeout(t);
+                    t = setTimeout(fn, ms);
+                };
+            }
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', runFitAll);
+            } else {
+                runFitAll();
+            }
+            window.addEventListener('resize', debounce(runFitAll, 150));
         })();
     </script>
     <script>
