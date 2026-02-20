@@ -5,10 +5,6 @@
     --milk: #FAF6EB;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300..700;1,300..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;500;600;700&display=swap');
-
-@import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300..700;1,300..700&family=Jersey+25&display=swap');
-
 @font-face {
     font-family: 'Foglihten';
     src: url('../assets/FoglihtenNo06_076.otf') format('opentype');
@@ -16,6 +12,12 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Felidae';
+    src: url('../assets/Felidae.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
 
 * {
     margin: 0;
@@ -28,7 +30,7 @@ body {
     display: flex;
     justify-content: center;
     width: 100%;
-    font-family: 'Foglihten', sans-serif;
+    font-family: 'Felidae', sans-serif;
     letter-spacing: 2px;
     background-color: var(--milk);
     color: #191410;
@@ -151,7 +153,6 @@ body.intro .love-feature {
 .couple-names {
     display: flex;
     flex-direction: column;
-    font-family: 'Foglihten', 'Playfair Display', serif;
     font-size: 42px;
     font-weight: 400;
     color: #fff;
@@ -174,10 +175,9 @@ body.intro .love-feature {
 }
 
 .wedding-date {
-    
     font-size: 16px;
     color: #fff;
-    margin-bottom: auto;
+    margin-bottom: 60px;
     letter-spacing: 1px;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     margin-left: auto;
@@ -231,7 +231,7 @@ body.intro .love-feature {
     min-height: 200px;
     z-index: 0;
     background-color: #e8e4dc;
-    background-image: url("../assets/Снимок экрана 2026-01-31 220636.png");
+    background-image: url("../assets/envelope-background.png");
     background-repeat: repeat;
     background-size: auto;
     box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6);
@@ -320,7 +320,6 @@ body.intro .love-feature {
     overflow: visible;
     position: relative;
     z-index: 10;
-    font-family: 'Foglihten', 'Playfair Display', serif;
     font-size: clamp(18cqw, 75vw, 323px);
     letter-spacing: 0.05em;
     font-weight: 400;
@@ -336,7 +335,6 @@ body.intro .love-feature {
 }
 
 .section-text-wrapper {
-    font-family: 'Foglihten', serif;
     padding: 0 40px;
 }
 
@@ -350,7 +348,6 @@ body.intro .love-feature {
 }
 
 .section-text {
-    font-family: 'Foglihten', sans-serif;
     font-size: 16px;
     color: #2C2C2C;
     line-height: 1.8;
@@ -422,7 +419,6 @@ body.intro .love-feature {
 }
 
 .calendar-day .day-number {
-    font-family: serif;
     font-size: 56px;
     font-weight: 500;
     color: #2C2C2C;
@@ -495,7 +491,7 @@ body.intro .love-feature {
 }
 
 .one-love-title {
-    font-style: italic;
+    font-style: italic;letter-spacing: 18px;
     color: #fff;
 }
 
@@ -512,7 +508,7 @@ body.intro .love-feature {
 }
 
 .one-love-subtitle {
-    font-size: 16px;
+    font-size: 28px;
     color: #fff;
     font-weight: 300;
     font-style: italic;
@@ -546,7 +542,6 @@ body.intro .love-feature {
 }
 
 .site-title {
-    font-family: 'Playfair Display', serif;
     font-size: 120px;
     font-weight: 700;
     color: #4A4A4A;
@@ -598,7 +593,6 @@ body.intro .love-feature {
 }
 
 .decorative-title {
-    font-family: 'Playfair Display', serif;
     font-weight: 300;
     margin-bottom: 25px;
     line-height: 0.9;
@@ -662,7 +656,6 @@ body.intro .love-feature {
 }
 
 .timing-title {
-    font-family: 'Playfair Display', serif;
     font-size: 27px;
     font-weight: 400;
     letter-spacing: 3px;
@@ -686,7 +679,6 @@ body.intro .love-feature {
 }
 
 .timing-time {
-    font-family: 'Playfair Display', serif;
     font-size: 24px;
     font-weight: 400;
 }
@@ -793,7 +785,6 @@ body:not(.intro) .music-toggle {
 
 /* Details Section */
 .details-title {
-    overflow: hidden;
     position: relative;
     color: #7A8A3D;
     font-size: 160px;
@@ -889,7 +880,6 @@ body:not(.intro) .music-toggle {
 }
 
 .questionnaire-section .btn-primary {
-    font-family: 'Foglihten', sans-serif;
     width: 100%;
     background-color: transparent;
     color: #2C2C2C;
@@ -948,7 +938,6 @@ body:not(.intro) .music-toggle {
 }
 
 .organizer-title {
-    font-family: 'Jersey 25', serif;
     font-size: 26px;
     font-weight: 600;
     color: #2C2C2C;
@@ -958,7 +947,6 @@ body:not(.intro) .music-toggle {
 }
 
 .organizer-text {
-    
     font-size: 15px;
     line-height: 1.6;
     color: #2C2C2C;
@@ -1205,7 +1193,6 @@ body:not(.intro) .music-toggle {
 }
 
 .questionnaire-form .btn-submit {
-    font-family: 'Foglihten', sans-serif;
     width: 100%;
     margin-top: 10px;
     margin-bottom: 0;
@@ -1345,7 +1332,7 @@ body:not(.intro) .music-toggle {
     }
 
     .one-love-subtitle {
-        font-size: 14px;
+        font-size: 28px;
         padding-bottom: 20px;
     }
 
