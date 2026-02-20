@@ -30,7 +30,7 @@ body {
     display: flex;
     justify-content: center;
     width: 100%;
-    font-family: 'Felidae', sans-serif;
+    font-family: 'Foglihten', sans-serif;
     letter-spacing: 2px;
     background-color: var(--milk);
     color: #191410;
@@ -508,7 +508,7 @@ body.intro .love-feature {
 }
 
 .one-love-subtitle {
-    font-size: 28px;
+    font-size: 48px;
     color: #fff;
     font-weight: 300;
     font-style: italic;
@@ -516,10 +516,10 @@ body.intro .love-feature {
     align-self: flex-end;
     margin-top: auto;
     padding-bottom: 30px;
+    padding-right: 20px;
 }
 
 .section-subtitle {
-    
     font-size: 14px;
     color: #FAF6EB;
     margin-bottom: 25px;
@@ -1324,7 +1324,7 @@ body:not(.intro) .music-toggle {
     }
 
     .one-love-title-line {
-        font-size: 52px;
+        font-size: 38px;
     }
 
     .one-love-title-line:last-child {
