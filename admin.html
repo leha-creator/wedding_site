@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ-панель — Анкеты гостей</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <div class="admin-container">
+        <h1>Анкеты гостей</h1>
+        <div class="toolbar">
+            <input type="text" id="search-input" placeholder="Поиск по гостям или user_id...">
+            <button type="button" id="export-csv" class="btn-export">Экспорт CSV</button>
+            <button type="button" id="export-excel" class="btn-export">Экспорт Excel</button>
+        </div>
+        <div class="table-wrapper">
+            <table class="admin-table" id="submissions-table">
+                <thead>
+                    <tr>
+                        <th data-sort="user_id">User ID</th>
+                        <th data-sort="guests">Гости</th>
+                        <th data-sort="transport">Транспорт</th>
+                        <th data-sort="created_at">Создано</th>
+                        <th data-sort="updated_at">Обновлено</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body"></tbody>
+            </table>
+        </div>
+        <div class="pagination" id="pagination"></div>
+    </div>
+    <script src="js/admin.js"></script>
+</body>
+</html>

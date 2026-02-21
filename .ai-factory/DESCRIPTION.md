@@ -18,8 +18,8 @@ A single-page wedding invitation website. Guests open an animated envelope to re
 
 - **Language:** HTML, CSS, JavaScript (vanilla)
 - **Framework:** None — static site
-- **Backend:** Node.js + Express — serves static files, POST /api/submit for form
-- **Database:** None — form data sent to API, forwarded to Telegram chat; Google Sheets planned
+- **Backend:** Node.js + Express — serves static files, POST /api/submit, form CRUD, admin API
+- **Database:** SQLite (better-sqlite3) — submissions stored in `./data/submissions.db`
 - **Build:** None — no bundler
 - **Assets:** Images (JPG, PNG), audio (MP3)
 
@@ -28,14 +28,18 @@ A single-page wedding invitation website. Guests open an animated envelope to re
 ```
 pavel-maria/
 ├── server.js           # Express server entry point
-├── package.json        # express, dotenv
+├── admin.html          # Admin dashboard (Basic Auth)
+├── package.json        # express, dotenv, better-sqlite3, exceljs
 ├── src/
-│   ├── routes/submit.js    # POST /api/submit
-│   └── services/          # telegram.js, sheets.js (placeholders)
+│   ├── db/             # SQLite init, schema
+│   ├── routes/         # submit, form, admin
+│   ├── services/       # telegram, submissions
+│   └── middleware/     # Basic Auth for admin
+├── js/                 # user-id.js, admin.js
 ├── index.html          # Single HTML file, inline scripts
 ├── css/index.css       # Styles
 ├── assets/             # Images
-└── *.mp3, *.jpg       # Media in root
+└── data/               # submissions.db (created at runtime)
 ```
 
 ## Architecture Notes

@@ -257,6 +257,8 @@
                 <button class="modal-close" id="close-modal-btn" aria-label="Закрыть">&times;</button>
             </div>
             <p class="modal-deadline">Просим заполнить анкету до <strong>15.04.2026</strong>.</p>
+            <p class="modal-last-submit" id="last-submit-msg" style="display:none; font-size:0.9em; color:#666;"></p>
+            <p class="modal-restored-msg" id="restored-msg" style="display:none; font-size:0.9em; color:#28a745;"></p>
             <form class="questionnaire-form" id="questionnaire-form">
                 <div class="form-group">
                     <div class="fio-fields" id="fio-fields">
@@ -277,6 +279,7 @@
                     </label>
                 </div>
                 <button type="submit" class="btn-primary btn-submit">отправить</button>
+                <button type="button" class="btn-secondary btn-clear-data" id="clear-data-btn" style="margin-top:12px; background:transparent; color:#999; font-size:0.85em;">Очистить мои данные</button>
             </form>
         </div>
     </div>
@@ -322,6 +325,7 @@
             }
         })();
     </script>
+    <script src="js/user-id.js"></script>
     <script>
         (function () {
             const modal = document.getElementById('questionnaire-modal');
@@ -330,17 +334,71 @@
             const addFioBtn = document.getElementById('add-fio-btn');
             const fioFields = document.getElementById('fio-fields');
             const form = document.getElementById('questionnaire-form');
+            const lastSubmitMsg = document.getElementById('last-submit-msg');
+            const restoredMsg = document.getElementById('restored-msg');
+            const clearDataBtn = document.getElementById('clear-data-btn');
 
             function openModal() {
                 modal.classList.add('modal-visible');
                 modal.setAttribute('aria-hidden', 'false');
                 document.body.style.overflow = 'hidden';
+                restoredMsg.style.display = 'none';
+                loadPreviousSubmission();
             }
 
             function closeModal() {
                 modal.classList.remove('modal-visible');
                 modal.setAttribute('aria-hidden', 'true');
                 document.body.style.overflow = '';
+            }
+
+            function addFioRow(value) {
+                const row = document.createElement('div');
+                row.className = 'fio-row';
+                row.innerHTML = '<input type="text" name="fio[]" placeholder="Фамилия Имя Отчество">' +
+                    '<button type="button" class="btn-remove-fio" aria-label="Удалить">&times;</button>';
+                fioFields.appendChild(row);
+                const inp = row.querySelector('input');
+                if (value) inp.value = value;
+                row.querySelector('.btn-remove-fio').addEventListener('click', function () { row.remove(); });
+            }
+
+            function formatDateTime(isoStr) {
+                if (!isoStr) return '';
+                const d = new Date(isoStr);
+                return d.toLocaleString('ru-RU', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+            }
+
+            async function loadPreviousSubmission() {
+                const userId = window.getOrCreateUserId();
+                lastSubmitMsg.style.display = 'none';
+                lastSubmitMsg.textContent = 'Загрузка...';
+                lastSubmitMsg.style.display = 'block';
+                try {
+                    const res = await fetch('/api/form/' + userId);
+                    lastSubmitMsg.style.display = 'none';
+                    if (res.ok) {
+                        const data = await res.json();
+                        var rows = Array.from(fioFields.querySelectorAll('.fio-row'));
+                        for (var j = 1; j < rows.length; j++) rows[j].remove();
+                        const firstInput = fioFields.querySelector('input[name="fio[]"]');
+                        if (firstInput && data.guests && data.guests[0]) {
+                            firstInput.value = data.guests[0];
+                        }
+                        for (var i = 1; i < (data.guests || []).length; i++) {
+                            addFioRow(data.guests[i]);
+                        }
+                        form.querySelector('[name="transport"]').checked = Boolean(data.transport);
+                        restoredMsg.textContent = 'Загружена ваша предыдущая анкета от ' + formatDateTime(data.updated_at);
+                        restoredMsg.style.display = 'block';
+                        lastSubmitMsg.textContent = 'Последняя отправка: ' + formatDateTime(data.updated_at);
+                        lastSubmitMsg.style.display = 'block';
+                    } else {
+                        lastSubmitMsg.style.display = 'none';
+                    }
+                } catch (e) {
+                    lastSubmitMsg.style.display = 'none';
+                }
             }
 
             openBtn.addEventListener('click', openModal);
@@ -354,16 +412,27 @@
                 if (e.key === 'Escape' && modal.classList.contains('modal-visible')) closeModal();
             });
 
-            addFioBtn.addEventListener('click', function () {
-                const row = document.createElement('div');
-                row.className = 'fio-row';
-                row.innerHTML = '<input type="text" name="fio[]" placeholder="Фамилия Имя Отчество">' +
-                    '<button type="button" class="btn-remove-fio" aria-label="Удалить">&times;</button>';
-                fioFields.appendChild(row);
+            addFioBtn.addEventListener('click', function () { addFioRow(); });
 
-                row.querySelector('.btn-remove-fio').addEventListener('click', function () {
-                    row.remove();
-                });
+            clearDataBtn.addEventListener('click', async function () {
+                if (!confirm('Удалить вашу сохранённую анкету? Это действие нельзя отменить.')) return;
+                const userId = window.getOrCreateUserId();
+                try {
+                    const res = await fetch('/api/form/' + userId, { method: 'DELETE' });
+                    const json = await res.json();
+                    if (res.ok && json.success) {
+                        form.reset();
+                        var rows = fioFields.querySelectorAll('.fio-row');
+                        for (var i = 1; i < rows.length; i++) rows[i].remove();
+                        lastSubmitMsg.style.display = 'none';
+                        restoredMsg.style.display = 'none';
+                        alert('Данные удалены.');
+                    } else {
+                        alert('Не удалось удалить данные.');
+                    }
+                } catch (e) {
+                    alert('Ошибка при удалении.');
+                }
             });
 
             form.addEventListener('submit', async function (e) {
@@ -377,12 +446,13 @@
                     .map(function (inp) { return inp.value.trim(); })
                     .filter(Boolean);
                 const transport = form.querySelector('[name="transport"]').checked;
+                const userId = window.getOrCreateUserId();
 
                 try {
                     const res = await fetch('/api/submit', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ guests: guests, transport: transport })
+                        body: JSON.stringify({ user_id: userId, guests: guests, transport: transport })
                     });
                     const json = await res.json();
                     if (!res.ok) {
@@ -390,6 +460,12 @@
                     }
                     submitBtn.disabled = false;
                     submitBtn.textContent = originalText;
+                    restoredMsg.style.display = 'none';
+                    if (json.data && json.data.updated_at) {
+                        lastSubmitMsg.textContent = 'Последняя отправка: ' + formatDateTime(json.data.updated_at);
+                        lastSubmitMsg.style.display = 'block';
+                    }
+                    alert('Анкета сохранена.');
                     closeModal();
                     form.reset();
                 } catch (err) {
