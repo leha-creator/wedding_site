@@ -1,4 +1,5 @@
-FROM node:20-alpine
+# node:20-slim for better-sqlite3 native module support (Alpine requires build deps)
+FROM node:20-slim
 
 WORKDIR /app
 
