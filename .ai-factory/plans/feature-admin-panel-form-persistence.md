@@ -133,7 +133,7 @@ Add admin dashboard for viewing/exporting form submissions, and implement user-s
 #### Task 10: Table features and export (CSV, Excel) ✅
 **Files:** `admin.html`, `src/routes/admin.js`, `package.json`
 
-- Install `xlsx` (SheetJS) for Excel export
+- Install `exceljs` for Excel export (xlsx has known vulns, no fix)
 - Table: sortable columns (click header), search/filter input, pagination controls
 - Add "Экспорт CSV" and "Экспорт Excel" buttons
 - `GET /api/admin/submissions/export?format=csv` — stream CSV
@@ -148,10 +148,10 @@ Add admin dashboard for viewing/exporting form submissions, and implement user-s
 - **Database:** `better-sqlite3` — file-based, no external service; use volume in Docker for persistence
 - **User ID:** UUID v4; stored in localStorage + cookie (`wedding_user_id`) as fallback
 - **Admin auth:** HTTP Basic Auth middleware only
-- **Excel:** `xlsx` package for `.xlsx` generation
+- **Excel:** `exceljs` package for `.xlsx` generation
 - **Russian locale:** All admin UI strings in Russian (per project)
 
 ## Dependencies to Add
 
 - `better-sqlite3` — SQLite
-- `xlsx` — Excel export
+- `exceljs` — Excel export

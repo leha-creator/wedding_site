@@ -3,7 +3,7 @@
  */
 
 const express = require('express');
-const XLSX = require('xlsx');
+const ExcelJS = require('exceljs');
 const router = express.Router();
 const submissions = require('../services/submissions');
 
@@ -36,7 +36,7 @@ router.get('/submissions', (req, res) => {
   }
 });
 
-router.get('/submissions/export', (req, res) => {
+router.get('/submissions/export', async (req, res) => {
   const format = (req.query.format || 'csv').toLowerCase();
   const limit = Math.min(100000, Math.max(1, parseInt(req.query.limit, 10) || 10000));
   const search = req.query.search || '';
@@ -88,10 +88,10 @@ router.get('/submissions/export', (req, res) => {
           row.updated_at || '',
         ]),
       ];
-      const wb = XLSX.utils.book_new();
-      const ws = XLSX.utils.aoa_to_sheet(rows);
-      XLSX.utils.book_append_sheet(wb, ws, 'Анкеты');
-      const buf = XLSX.write(wb, { type: 'buffer', bookType: 'xlsx' });
+      const workbook = new ExcelJS.Workbook();
+      const worksheet = workbook.addWorksheet('Анкеты');
+      worksheet.addRows(rows);
+      const buf = await workbook.xlsx.writeBuffer();
       res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
       res.setHeader('Content-Disposition', 'attachment; filename="submissions.xlsx"');
       res.send(buf);

@@ -29,7 +29,7 @@ A single-page wedding invitation website. Guests open an animated envelope to re
 pavel-maria/
 ├── server.js           # Express server entry point
 ├── admin.html          # Admin dashboard (Basic Auth)
-├── package.json        # express, dotenv, better-sqlite3, xlsx
+├── package.json        # express, dotenv, better-sqlite3, exceljs
 ├── src/
 │   ├── db/             # SQLite init, schema
 │   ├── routes/         # submit, form, admin
