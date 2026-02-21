@@ -1,26 +1,39 @@
 {
-  "version": "1.4.0",
-  "agent": "cursor",
-  "skillsDir": ".cursor/skills",
-  "installedSkills": [
-    "ai-factory",
-    "architecture",
-    "best-practices",
-    "commit",
-    "deploy",
-    "evolve",
-    "feature",
-    "fix",
-    "implement",
-    "improve",
-    "review",
-    "security-checklist",
-    "skill-generator",
-    "task"
-  ],
-  "mcp": {
-    "github": false,
-    "filesystem": false,
-    "postgres": false
-  }
+  "version": "2.1.0",
+  "agents": [
+    {
+      "skillsDir": ".cursor/skills",
+      "id": "cursor",
+      "installedSkills": [
+        "aif",
+        "aif-architecture",
+        "aif-best-practices",
+        "aif-build-automation",
+        "aif-ci",
+        "aif-commit",
+        "aif-deploy",
+        "aif-dockerize",
+        "aif-docs",
+        "aif-evolve",
+        "aif-fix",
+        "aif-grounded",
+        "aif-implement",
+        "aif-improve",
+        "aif-loop",
+        "aif-plan",
+        "aif-review",
+        "aif-roadmap",
+        "aif-rules",
+        "aif-security-checklist",
+        "aif-skill-generator",
+        "aif-verify"
+      ],
+      "mcp": {
+        "github": false,
+        "filesystem": false,
+        "postgres": false,
+        "chromeDevtools": false
+      }
+    }
+  ]
 }

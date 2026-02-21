@@ -1,0 +1,63 @@
+Please add an admin panel to my existing project with the following requirements:
+
+CORE ADMIN FUNCTIONALITY:
+1. Create an admin dashboard page that displays all form submissions from the website in a table format.
+
+2. The table should include the following columns:
+   - All fields/data submitted through the website form
+   - Date and time of submission (automatically added when the form is submitted)
+   - Timestamp when the record was created
+   - User identifier (to distinguish between different users)
+
+3. For the form data, please ensure that when users submit the form, the system automatically captures and stores:
+   - All form field values
+   - Submission timestamp
+   - Creation timestamp in the database
+   - A unique user identifier to track submissions per user
+
+4. Add export functionality to download the table data:
+   - Option to download as CSV file
+   - Option to download as Excel file (.xlsx format)
+   - The export should include all columns shown in the table, including timestamps
+
+5. The admin panel should be accessible only to authorized users (implement basic authentication if not already present)
+
+6. Make the table features:
+   - Sortable by columns (especially by date/time and user identifier)
+   - Searchable/filterable
+   - Paginated for better performance with many records
+
+USER-SPECIFIC FORM PERSISTENCE (NO AUTHENTICATION REQUIRED):
+7. Implement user identification without authentication:
+   - Generate a unique anonymous user ID using UUID/unique identifier
+   - Store this ID in browser's localStorage (or cookie as fallback)
+   - This ID should persist across browser sessions
+
+8. Form data persistence per user:
+   - When a user submits the form, associate their submission with their unique ID
+   - Store the relationship between user ID and form data in the database
+
+9. Form state restoration on page reload:
+   - When a user returns to the form page, detect their unique ID from localStorage/cookie
+   - Automatically fetch and populate the form with their previously submitted data
+   - Show a message like "Loaded your previous submission from [date/time]"
+
+10. Data management operations:
+    - UPDATE: If user modifies and resubmits the form, OVERWRITE their previous record in the database (no duplicate entries for same user)
+    - DELETE: Add a "Clear/Delete" button on the form that allows users to remove their data from the database
+    - CREATE: If no previous submission exists, create a new record
+    - The admin table should always show only the latest version of each user's submission
+
+11. Implementation approach:
+    - Use localStorage as primary storage for user ID (setItem/getItem)
+    - Implement cookie fallback for browsers with localStorage disabled
+    - Create API endpoints that accept user ID and form data for CRUD operations
+    - Ensure database has proper indexing on user ID field for quick lookups
+
+12. UI/UX considerations:
+    - Display timestamp of last submission on the form
+    - Add visual indication that form data is being saved/loaded
+    - Include confirmation dialogs for delete operations
+    - Show success/error messages for all operations
+
+Please implement this in a way that integrates with my existing project structure and database. If there are any specific frameworks or technologies already in use in my project, please adapt accordingly. Let me know if you need any clarification about the existing setup.
