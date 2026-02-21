@@ -1,7 +1,15 @@
-# Stage 1: Build — better-sqlite3 requires node-gyp (Python, make, g++)
-FROM node:20-slim AS builder
+# Stage 1: Build — Ubuntu 24.04, Node 20, better-sqlite3 requires node-gyp (Python, make, g++)
+FROM ubuntu:24.04 AS builder
+
+ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y \
+    curl \
+    ca-certificates \
+    gnupg \
+    && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y \
+    nodejs \
     python3 \
     make \
     g++ \
@@ -11,8 +19,17 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci --omit=dev
 
-# Stage 2: Runtime — copy compiled node_modules, no build tools needed
-FROM node:20-slim
+# Stage 2: Runtime — Ubuntu 24.04, только Node и собранные node_modules
+FROM ubuntu:24.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y \
+    curl \
+    ca-certificates \
+    && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y nodejs \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 COPY --from=builder /app/node_modules ./node_modules
