@@ -391,6 +391,7 @@
                         form.querySelector('[name="transport"]').checked = Boolean(data.transport);
                         restoredMsg.textContent = 'Загружена ваша предыдущая анкета от ' + formatDateTime(data.updated_at);
                         restoredMsg.style.display = 'block';
+                        restoredMsg.style.marginBottom = '20px';
                         lastSubmitMsg.textContent = 'Последняя отправка: ' + formatDateTime(data.updated_at);
                         lastSubmitMsg.style.display = 'block';
                     } else {
