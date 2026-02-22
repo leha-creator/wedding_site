@@ -279,7 +279,7 @@
                     </label>
                 </div>
                 <button type="submit" class="btn-primary btn-submit">отправить</button>
-                <button type="button" class="btn-secondary btn-clear-data" id="clear-data-btn" style="margin-top:12px; background:transparent; color:#999; font-size:0.85em;">Очистить мои данные</button>
+                <button type="button" class="btn-secondary btn-clear-data" id="clear-data-btn" style="margin-top:12px; background:transparent; color:#999; font-size:0.85em; border: none">Очистить мои данные</button>
             </form>
         </div>
     </div>
@@ -391,6 +391,7 @@
                         form.querySelector('[name="transport"]').checked = Boolean(data.transport);
                         restoredMsg.textContent = 'Загружена ваша предыдущая анкета от ' + formatDateTime(data.updated_at);
                         restoredMsg.style.display = 'block';
+                        restoredMsg.style.marginBottom = '20px';
                         lastSubmitMsg.textContent = 'Последняя отправка: ' + formatDateTime(data.updated_at);
                         lastSubmitMsg.style.display = 'block';
                     } else {
