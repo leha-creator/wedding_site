@@ -1,6 +1,7 @@
 /**
- * Sends form submissions to a Telegram chat via Bot API.
+ * Sends form submissions to Telegram chats via Bot API.
  * Requires TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID in .env
+ * TELEGRAM_CHAT_ID: one ID or multiple IDs separated by comma
  */
 
 function formatMessage(data, isUpdate = false) {
@@ -12,9 +13,12 @@ function formatMessage(data, isUpdate = false) {
 
 async function sendToTelegram(data, isUpdate = false) {
   const token = process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = process.env.TELEGRAM_CHAT_ID;
+  const chatIds = (process.env.TELEGRAM_CHAT_ID || '')
+    .split(',')
+    .map((id) => id.trim())
+    .filter(Boolean);
 
-  if (!token || !chatId) {
+  if (!token || chatIds.length === 0) {
     console.log('[INFO] Telegram: skipped (TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID not set)');
     return;
   }
@@ -22,25 +26,41 @@ async function sendToTelegram(data, isUpdate = false) {
   const text = formatMessage(data, isUpdate);
   const url = `https://api.telegram.org/bot${token}/sendMessage`;
 
-  const res = await fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      chat_id: chatId,
-      text,
-      parse_mode: 'HTML',
-    }),
-  });
+  let successCount = 0;
+  const errors = [];
 
-  const json = await res.json();
+  for (const chatId of chatIds) {
+    try {
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text,
+          parse_mode: 'HTML',
+        }),
+      });
 
-  if (!res.ok || !json.ok) {
-    const err = json.description || `HTTP ${res.status}`;
-    console.log('[INFO] Telegram send failed:', err);
-    throw new Error(`Telegram: ${err}`);
+      const json = await res.json();
+
+      if (!res.ok || !json.ok) {
+        const err = json.description || `HTTP ${res.status}`;
+        errors.push({ chatId, err });
+        console.log('[INFO] Telegram send failed for chat', chatId, ':', err);
+      } else {
+        successCount++;
+        console.log('[INFO] Telegram: message sent to chat', chatId);
+      }
+    } catch (err) {
+      errors.push({ chatId, err: err.message });
+      console.log('[INFO] Telegram send failed for chat', chatId, ':', err.message);
+    }
   }
 
-  console.log('[INFO] Telegram: message sent to chat', chatId);
+  if (successCount === 0 && errors.length > 0) {
+    const firstErr = errors[0];
+    throw new Error(`Telegram: ${firstErr.err}`);
+  }
 }
 
 module.exports = { sendToTelegram };

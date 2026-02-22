@@ -13,7 +13,7 @@
 | `ADMIN_USER` | — | Логин для админ-панели (Basic Auth) |
 | `ADMIN_PASSWORD` | — | Пароль для админ-панели |
 | `TELEGRAM_BOT_TOKEN` | — | Токен бота от @BotFather |
-| `TELEGRAM_CHAT_ID` | — | ID чата для уведомлений о заявках |
+| `TELEGRAM_CHAT_ID` | — | ID чата для уведомлений (несколько — через запятую) |
 | `LOG_LEVEL` | `info` | Уровень логов: `debug`, `info`, `warn`, `error` |
 | `GOOGLE_SHEETS_CREDENTIALS` | — | (зарезервировано) |
 | `GOOGLE_SHEET_ID` | — | (зарезервировано) |
@@ -31,10 +31,10 @@ ADMIN_PASSWORD=ваш_секретный_пароль
 
 ## Telegram
 
-Если указаны `TELEGRAM_BOT_TOKEN` и `TELEGRAM_CHAT_ID`, при каждой новой или обновлённой анкете в указанный чат отправляется сообщение.
+Если указаны `TELEGRAM_BOT_TOKEN` и `TELEGRAM_CHAT_ID`, при каждой новой или обновлённой анкете в указанный чат (или чаты) отправляется сообщение.
 
 - Токен: создайте бота через [@BotFather](https://t.me/BotFather)
-- Chat ID: ID чата или группы (например, через @userinfobot)
+- Chat ID: один ID или несколько через запятую (например, `123456789,-987654321`)
 
 ## База данных
 
