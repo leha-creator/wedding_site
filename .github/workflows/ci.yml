@@ -30,11 +30,13 @@ jobs:
       - name: Smoke test
         run: |
           node -e "
-          require('./src/db').initDb();
-          require('./src/db').getDb();
-          require('./src/services/submissions');
-          require('./src/routes/submit');
-          console.log('Modules OK');
+          (async () => {
+            await require('./src/db').initDb();
+            require('./src/db').getDb();
+            require('./src/services/submissions');
+            require('./src/routes/submit');
+            console.log('Modules OK');
+          })();
           "
 
   audit:
