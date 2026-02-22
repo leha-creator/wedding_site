@@ -17,7 +17,7 @@ pavel-maria/
 ├── Dockerfile
 ├── docker-compose.yml
 ├── src/
-│   ├── db/                # SQLite
+│   ├── db/                # sql.js (SQLite, pure JS)
 │   │   ├── index.js        # Инициализация, getDb
 │   │   └── schema.js       # Таблица submissions
 │   ├── routes/
@@ -46,7 +46,7 @@ pavel-maria/
 | `routes/` | `services/`, `middleware/` | HTTP-обработчики |
 | `services/submissions` | `db/` | Бизнес-логика анкет |
 | `services/telegram` | — | Внешний API |
-| `db/` | — | SQLite, схема |
+| `db/` | — | sql.js (SQLite), схема |
 
 ## Маршруты
 
@@ -61,7 +61,7 @@ pavel-maria/
 
 ## База данных
 
-SQLite, таблица `submissions`:
+sql.js (SQLite в pure JS/WASM, без нативной компиляции). Таблица `submissions`:
 
 | Колонка | Тип | Описание |
 |---------|-----|----------|

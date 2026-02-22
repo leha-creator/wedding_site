@@ -1,11 +1,11 @@
 /**
- * SQLite database initialization.
- * Creates data directory if needed, opens DB, runs schema.
+ * SQLite database initialization (sql.js — pure JS, no native compilation).
+ * Creates data directory if needed, loads/saves DB file, runs schema.
  */
 
 const path = require('path');
 const fs = require('fs');
-const Database = require('better-sqlite3');
+const initSqlJs = require('sql.js');
 const { createSchema } = require('./schema');
 
 const LOG_LEVEL = (process.env.LOG_LEVEL || 'info').toLowerCase();
@@ -21,6 +21,7 @@ const log = {
 };
 
 let db = null;
+let SQL = null;
 
 function getDbPath() {
   const dbPath = process.env.DB_PATH || './data/submissions.db';
@@ -36,7 +37,7 @@ function ensureDataDir(dbPath) {
   }
 }
 
-function initDb() {
+async function initDb() {
   if (db) return db;
 
   const dbPath = getDbPath();
@@ -44,7 +45,13 @@ function initDb() {
 
   try {
     ensureDataDir(dbPath);
-    db = new Database(dbPath);
+    SQL = await initSqlJs();
+
+    let data = null;
+    if (fs.existsSync(dbPath)) {
+      data = fs.readFileSync(dbPath);
+    }
+    db = data ? new SQL.Database(data) : new SQL.Database();
     createSchema(db);
     log.debug('Schema created');
   } catch (err) {
@@ -57,14 +64,29 @@ function initDb() {
 
 function getDb() {
   if (!db) {
-    return initDb();
+    throw new Error('Database not initialized. Call initDb() first.');
   }
   return db;
+}
+
+function saveDb() {
+  if (!db) return;
+  try {
+    const dbPath = getDbPath();
+    ensureDataDir(dbPath);
+    const data = db.export();
+    fs.writeFileSync(dbPath, Buffer.from(data));
+    log.debug('Database saved');
+  } catch (err) {
+    log.error('Failed to save database', err);
+    throw err;
+  }
 }
 
 function closeDb() {
   if (db) {
     try {
+      saveDb();
       db.close();
       log.debug('Database closed');
     } catch (err) {
@@ -77,5 +99,6 @@ function closeDb() {
 module.exports = {
   initDb,
   getDb,
+  saveDb,
   closeDb,
 };
