@@ -5,7 +5,7 @@
 ## Требования
 
 - Docker и Docker Compose на сервере
-- Образ основан на **Ubuntu 24.04** (совместим с хостом Ubuntu 24.04)
+- Образ основан на **node:20-slim** (sql.js — pure JS, без build tools)
 - Файл `.env` с настройками
 
 ## Первый запуск
@@ -65,7 +65,7 @@ ports:
 
 ## База данных
 
-SQLite хранится в `./data/submissions.db`. В Docker используется volume:
+SQLite (sql.js) хранится в `./data/submissions.db`. В Docker используется volume:
 
 ```yaml
 volumes:

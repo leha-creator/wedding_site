@@ -7,8 +7,6 @@ const adminRouter = require('./src/routes/admin');
 const { basicAuth } = require('./src/middleware/auth');
 const { initDb } = require('./src/db');
 
-initDb();
-
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -23,6 +21,9 @@ app.get('/admin', basicAuth, (req, res) => {
 });
 app.use('/api/admin', basicAuth, adminRouter);
 
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Server running at http://0.0.0.0:${PORT}`);
-});
+(async () => {
+  await initDb();
+  app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server running at http://0.0.0.0:${PORT}`);
+  });
+})();

@@ -1,9 +1,9 @@
 /**
  * CRUD service for form submissions.
- * Uses SQLite via src/db.
+ * Uses SQLite via src/db (sql.js).
  */
 
-const { getDb } = require('../db');
+const { getDb, saveDb } = require('../db');
 
 const LOG_LEVEL = (process.env.LOG_LEVEL || 'info').toLowerCase();
 const log = {
@@ -26,6 +26,17 @@ function toIso() {
   return new Date().toISOString();
 }
 
+function rowToSubmission(row) {
+  return {
+    id: row.id,
+    user_id: row.user_id,
+    guests: JSON.parse(row.guests || '[]'),
+    transport: Boolean(row.transport),
+    created_at: row.created_at,
+    updated_at: row.updated_at,
+  };
+}
+
 function createOrUpdate(userId, { guests, transport }) {
   log.info('createOrUpdate', { userId, guestCount: guests?.length });
 
@@ -35,20 +46,27 @@ function createOrUpdate(userId, { guests, transport }) {
   const transportInt = transport ? 1 : 0;
 
   try {
-    const existing = db.prepare('SELECT id FROM submissions WHERE user_id = ?').get(userId);
+    const stmt = db.prepare('SELECT id FROM submissions WHERE user_id = ?');
+    stmt.bind([userId]);
+    const existing = stmt.step() ? stmt.getAsObject() : null;
+    stmt.free();
 
     if (existing) {
-      db.prepare(
-        `UPDATE submissions SET guests = ?, transport = ?, updated_at = ? WHERE user_id = ?`
-      ).run(guestsJson, transportInt, now, userId);
+      db.run(
+        `UPDATE submissions SET guests = ?, transport = ?, updated_at = ? WHERE user_id = ?`,
+        [guestsJson, transportInt, now, userId]
+      );
       log.info('Updated submission', { userId });
+      saveDb();
       return { created: false, userId };
     } else {
-      db.prepare(
+      db.run(
         `INSERT INTO submissions (user_id, guests, transport, created_at, updated_at)
-         VALUES (?, ?, ?, ?, ?)`
-      ).run(userId, guestsJson, transportInt, now, now);
+         VALUES (?, ?, ?, ?, ?)`,
+        [userId, guestsJson, transportInt, now, now]
+      );
       log.info('Created submission', { userId });
+      saveDb();
       return { created: true, userId };
     }
   } catch (err) {
@@ -62,20 +80,15 @@ function getByUserId(userId) {
 
   const db = getDb();
   try {
-    const row = db.prepare(
+    const stmt = db.prepare(
       'SELECT id, user_id, guests, transport, created_at, updated_at FROM submissions WHERE user_id = ?'
-    ).get(userId);
+    );
+    stmt.bind([userId]);
+    const row = stmt.step() ? stmt.getAsObject() : null;
+    stmt.free();
 
     if (!row) return null;
-
-    return {
-      id: row.id,
-      user_id: row.user_id,
-      guests: JSON.parse(row.guests || '[]'),
-      transport: Boolean(row.transport),
-      created_at: row.created_at,
-      updated_at: row.updated_at,
-    };
+    return rowToSubmission(row);
   } catch (err) {
     log.error('getByUserId failed', err);
     throw err;
@@ -103,23 +116,24 @@ function getAll({ limit = 50, offset = 0, sortBy = 'updated_at', order = 'desc',
       params.push(q, q);
     }
 
-    const countStmt = db.prepare(`SELECT COUNT(*) as total FROM submissions${where}`);
-    const { total } = countStmt.get(...params);
+    const countSql = `SELECT COUNT(*) as total FROM submissions${where}`;
+    const countStmt = db.prepare(countSql);
+    countStmt.bind(params);
+    const total = countStmt.step() ? countStmt.getAsObject().total : 0;
+    countStmt.free();
 
     const sql = `SELECT id, user_id, guests, transport, created_at, updated_at
                  FROM submissions${where}
                  ORDER BY ${sort} ${ord}
                  LIMIT ? OFFSET ?`;
-    const rows = db.prepare(sql).all(...params, limit, offset);
-
-    const items = rows.map((row) => ({
-      id: row.id,
-      user_id: row.user_id,
-      guests: JSON.parse(row.guests || '[]'),
-      transport: Boolean(row.transport),
-      created_at: row.created_at,
-      updated_at: row.updated_at,
-    }));
+    const allParams = [...params, limit, offset];
+    const stmt = db.prepare(sql);
+    stmt.bind(allParams);
+    const items = [];
+    while (stmt.step()) {
+      items.push(rowToSubmission(stmt.getAsObject()));
+    }
+    stmt.free();
 
     return { items, total };
   } catch (err) {
@@ -133,14 +147,15 @@ function deleteByUserId(userId) {
 
   const db = getDb();
   try {
-    const result = db.prepare('DELETE FROM submissions WHERE user_id = ?').run(userId);
-    const deleted = result.changes > 0;
-    if (deleted) {
-      log.info('Deleted submission', { userId });
-    } else {
+    const existing = getByUserId(userId);
+    if (!existing) {
       log.warn('No submission to delete', { userId });
+      return false;
     }
-    return deleted;
+    db.run('DELETE FROM submissions WHERE user_id = ?', [userId]);
+    log.info('Deleted submission', { userId });
+    saveDb();
+    return true;
   } catch (err) {
     log.error('deleteByUserId failed', err);
     throw err;
